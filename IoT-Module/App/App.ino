@@ -54,7 +54,7 @@ void setup() {
 
 
   //Init WiFi connection
-  Connection("MGTS_GPON_5243", "JRQGJKYN");
+  Connection("", "");
 
   //Temperature monitoring
   DS18B20.begin();
