@@ -6,7 +6,7 @@ void readCredentials() //connection string
   int passAddr = ssidAddr + SSID_LEN;
   int connectionStringAddr = passAddr + SSID_LEN;
   connectionString = (char *)malloc(CONNECTION_STRING_LEN);
-  strcpy(connectionString, "HostName=MedicineAssistant.azure-devices.net;DeviceId=tempdevice;SharedAccessKey=8E4cl+KVX39FvhrfWLiQqCYd3GyGfasXs4EQI2o6tMY=");
+  strcpy(connectionString, "");
   int connectionStringLength = EEPROMread(connectionStringAddr, connectionString);
   EEPROMWrite(connectionStringAddr, connectionString, strlen(connectionString));
 }
