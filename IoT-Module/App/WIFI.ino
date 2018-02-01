@@ -1,21 +1,24 @@
 #include <ESP8266WiFi.h>
 
 void Connection(char *_ssid, char *_password) {
+    WiFi.mode(WIFI_STA);
     WiFi.begin(_ssid, _password);
     
     while (WiFi.status() != WL_CONNECTED) {
-      uint8_t mac[6];
-      
-      WiFi.macAddress(mac);
-      Serial.printf("You device with MAC address %02x:%02x:%02x:%02x:%02x:%02x connects to %s failed! Waiting 10 seconds to retry.\r\n",
-                  mac[0], mac[1], mac[2], mac[3], mac[4], mac[5], _ssid);
-                  
-      WiFi.begin(_ssid, _password);
-      
-      digitalWrite(LED_BUILTIN, HIGH);
-      delay(500);    
-      digitalWrite(LED_BUILTIN, LOW);
-      delay(500);
+        uint8_t mac[6];
+        
+        WiFi.macAddress(mac);
+        Serial.printf("You device with MAC address %02x:%02x:%02x:%02x:%02x:%02x connects to %s failed! Waiting 10 seconds to retry.\r\n",
+                    mac[0], mac[1], mac[2], mac[3], mac[4], mac[5], _ssid);
+                    
+        WiFi.begin(_ssid, _password);
+  
+        for (int i = 0; i < 10; i++) {
+              digitalWrite(LED_BUILTIN, HIGH);
+              delay(500);    
+              digitalWrite(LED_BUILTIN, LOW);
+              delay(500);
+        }
     }
   
     if (WiFi.status() != WL_CONNECTED) {
