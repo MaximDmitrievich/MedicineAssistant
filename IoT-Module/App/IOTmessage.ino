@@ -1,6 +1,6 @@
 #include <ArduinoJson.h>
 
-bool readMessage(int messageId, char *payload, float temperature, float pulse, int cardio) {
+bool readMessage(int messageId, char *payload, float temperature, float hr, float *cardio) {
     StaticJsonBuffer<MESSAGE_MAX_LEN> jsonBuffer;
     JsonObject &root = jsonBuffer.createObject();
     
@@ -10,7 +10,7 @@ bool readMessage(int messageId, char *payload, float temperature, float pulse, i
     bool temperatureAlert = false;
 
     root["temperature"] = temperature;
-    root["pulse"] = pulse;
+    root["hr"] = hr;
     root["cardio"] = cardio;
     
     if (temperature > TEMPERATURE_ALERT) {

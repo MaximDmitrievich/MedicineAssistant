@@ -56,7 +56,8 @@ unsigned long cek_beat_time = 0;
 int data_now, data_old, delta_data;
 bool flag_detek = false;
 float HR, HR_old;
-float BPM_Array[S_ECG_SIZE];
+float BPM_Array[interval_cardio];
+static int increment;
 
 //Message sending and pending
 static bool messagePending = false;
@@ -112,22 +113,28 @@ void setup() {
     
     //Temperature monitoring start
     DS18B20.begin();
+    increment = 0;
 }
 
 void loop() {
     float temperature = getTemperature();
-    float pulse = getPulse();
-    int cardio = getCardio();
-
-    Serial.printf("QRS: %d, Pulse %lf, Temperature: %lf\n", cardio, pulse, temperature);
+    float hr = getHR();
+    float cardio = getCardio();
+    if (increment < interval_cardio) {
+        BPM_Array[increment++] = cardio;
+    }
+    
+    
+    Serial.printf("Cardio: %d\n", BPM_Array[increment]);
     if (remessage < millis()) {
         if (!messagePending && messageSending) {
             char messagePayload[MESSAGE_MAX_LEN];
-            bool temperatureAlert = readMessage(messageCount, messagePayload, temperature, pulse, cardio);
+            bool temperatureAlert = readMessage(messageCount, messagePayload, temperature, hr, BPM_Array);
             
             sendMessage(iotHubClientHandle, messagePayload, temperatureAlert);
-            
+            memset(BPM_Array, 0.0, interval_cardio);
             messageCount++;
+            increment = 0;
         }
         remessage = millis() + interval;
         IoTHubClient_LL_DoWork(iotHubClientHandle);
