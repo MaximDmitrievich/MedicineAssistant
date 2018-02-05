@@ -13,14 +13,13 @@ static void sendCallback(IOTHUB_CLIENT_CONFIRMATION_RESULT result, void *userCon
     messagePending = false;
 }
 
-static void sendMessage(IOTHUB_CLIENT_LL_HANDLE iotHubClientHandle, char *buffer, bool temperatureAlert) {
+static void sendMessage(IOTHUB_CLIENT_LL_HANDLE iotHubClientHandle, char *buffer) {
     IOTHUB_MESSAGE_HANDLE messageHandle = IoTHubMessage_CreateFromByteArray((const unsigned char *)buffer, strlen(buffer));
     
     if (messageHandle == NULL) {
         Serial.println("Unable to create a new IoTHubMessage.");
     } else {
         MAP_HANDLE properties = IoTHubMessage_Properties(messageHandle);
-        Map_Add(properties, "temperatureAlert", temperatureAlert ? "true" : "false");
         
         Serial.printf("Sending message: %s.\r\n", buffer);
         
@@ -49,7 +48,6 @@ IOTHUBMESSAGE_DISPOSITION_RESULT receiveMessageCallback(IOTHUB_MESSAGE_HANDLE me
     IOTHUBMESSAGE_DISPOSITION_RESULT result;
     const unsigned char *buffer;
     size_t size;
-    
     if (IoTHubMessage_GetByteArray(message, &buffer, &size) != IOTHUB_MESSAGE_OK) {
         Serial.println("Unable to IoTHubMessage_GetByteArray.");
         result = IOTHUBMESSAGE_REJECTED;

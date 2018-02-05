@@ -16,7 +16,6 @@
 #define S_ECG_SIZE 226
 
 //Defined ints
-#define TEMPERATURE_ALERT 38
 #define INTERVAL 2000
 #define EEPROM_SIZE 512
 #define SSID_LEN 32
@@ -125,13 +124,12 @@ void loop() {
     }
     
     
-    Serial.printf("Cardio: %d\n", BPM_Array[increment]);
+    Serial.printf("Cardio: %lf\n", cardio);
     if (remessage < millis()) {
         if (!messagePending && messageSending) {
             char messagePayload[MESSAGE_MAX_LEN];
-            bool temperatureAlert = readMessage(messageCount, messagePayload, temperature, hr, BPM_Array);
-            
-            sendMessage(iotHubClientHandle, messagePayload, temperatureAlert);
+            readMessage(messageCount, messagePayload, temperature, hr, BPM_Array, increment);
+            sendMessage(iotHubClientHandle, messagePayload);
             memset(BPM_Array, 0.0, interval_cardio);
             messageCount++;
             increment = 0;

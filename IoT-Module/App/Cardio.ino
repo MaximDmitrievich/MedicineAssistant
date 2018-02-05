@@ -2,7 +2,7 @@ float getCardio() {
     if (digitalRead(CARDIO_LOMIN_PIN) == 1 || digitalRead(CARDIO_LOPLU_PIN) == 1) {
         return -1;
     } else {
-      return (1.0 * analogRead(A0)) / 1000.0;
+      return (1.0 * analogRead(A0));
     }
 }
 
