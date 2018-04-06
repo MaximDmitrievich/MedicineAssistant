@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2002
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoctorClientModule", "DoctorClientModule\DoctorClientModule.csproj", "{93D4BB6F-704E-4BF7-B572-CFE9F1EDF91F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoctorClientModule", "DoctorClientModule\DoctorClientModule.csproj", "{35874A46-F768-4364-A796-F913797B206A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{93D4BB6F-704E-4BF7-B572-CFE9F1EDF91F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{93D4BB6F-704E-4BF7-B572-CFE9F1EDF91F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{93D4BB6F-704E-4BF7-B572-CFE9F1EDF91F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{93D4BB6F-704E-4BF7-B572-CFE9F1EDF91F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35874A46-F768-4364-A796-F913797B206A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35874A46-F768-4364-A796-F913797B206A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35874A46-F768-4364-A796-F913797B206A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35874A46-F768-4364-A796-F913797B206A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {B4192B40-8C34-4871-A559-3C61E8B5A4E9}
+		SolutionGuid = {B64A5171-E132-42D3-AD6D-154F529F6A2F}
 	EndGlobalSection
 EndGlobal

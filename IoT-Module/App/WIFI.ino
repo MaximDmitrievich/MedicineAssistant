@@ -28,6 +28,27 @@ void Connection(char *_ssid, char *_password) {
     }
 }
 
+void Connection_Non_Pass() {
+    Serial.println("Start to connect to free WiFi points");
+    int networksQty = WiFi.scanNetworks();
+    if (networksQty == 0) {
+        Serial.println("There are no free WiFi points");
+    } else {
+        for (int i = 0; i < networksQty; i++) {
+             if (WiFi.encryptionType(i + 1) == ENC_TYPE_NONE) {
+                continue;
+             } else {
+                Connection((char *)WiFi.SSID(i + 1).c_str(), "");
+                if (WiFi.status() == WL_CONNECTED) {
+                    break;
+                } else {
+                    continue;
+                }
+             }
+        }
+    }
+}
+
 void initTime()
 {
     time_t epochTime;

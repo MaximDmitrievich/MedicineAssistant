@@ -1,9 +1,11 @@
 float getCardio() {
     if (digitalRead(CARDIO_LOMIN_PIN) == 1 || digitalRead(CARDIO_LOPLU_PIN) == 1) {
-        return -1;
+        inByte = 512; 
     } else {
-      return (1.0 * analogRead(A0));
+      inByte = 1.0 * analogRead(CARDIO_INPUT_PIN);
     }
+    inByte = map(inByte, 0, 1023, 0, 150);
+    return inByte;
 }
 
 float getHR() {
@@ -12,7 +14,7 @@ float getHR() {
         previousMillis = currentMillis;
         hitung_HR(analogRead(CARDIO_INPUT_PIN));
     }
-    return BPM;
+    return HR;
 }
 
 void hitung_HR(int data_pulse)
@@ -51,7 +53,7 @@ void hitung_HR(int data_pulse)
     cek_beat_time = millis() - newtime;
     if (cek_beat_time > 10000) {
         newtime = millis();
-        HR = 0;
+        //HR = 0;
     }
     BPM = HR;
 }

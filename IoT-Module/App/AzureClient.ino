@@ -21,7 +21,7 @@ static void sendMessage(IOTHUB_CLIENT_LL_HANDLE iotHubClientHandle, char *buffer
     } else {
         MAP_HANDLE properties = IoTHubMessage_Properties(messageHandle);
         
-        Serial.printf("Sending message: %s.\r\n", buffer);
+        //Serial.printf("Sending message: %s.\r\n", buffer);
         
         if (IoTHubClient_LL_SendEventAsync(iotHubClientHandle, messageHandle, sendCallback, NULL) != IOTHUB_CLIENT_OK) {
             Serial.println("Failed to hand over the message to IoTHubClient.");

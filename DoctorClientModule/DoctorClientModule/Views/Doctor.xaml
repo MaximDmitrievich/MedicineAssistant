@@ -1,0 +1,87 @@
+﻿<Page x:Class="DoctorClientModule.Views.Doctor"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DoctorClientModule.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="700" d:DesignWidth="1200"
+      Title="Doctor"
+      >
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="4*"/>
+        </Grid.RowDefinitions>
+        
+        <Grid x:Name="DoctorName" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Ellipse Height="150" Width="180">
+                <Ellipse.Fill>
+                    <ImageBrush ImageSource="/Images/1.jpg"/>
+                </Ellipse.Fill>
+            </Ellipse>
+            
+        </Grid>
+        <Grid x:Name="InterfaceDoctor" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Orientation="Horizontal" >
+                <Grid x:Name="AddPat" Margin="20">
+                    
+                    <Button Click="AddPatient_OnClick" 
+                            Style="{StaticResource RoundCorner}">Add Patient</Button>
+                </Grid>
+                <Grid x:Name="DoctorAccount" Margin="10">
+                    <Border Style="{StaticResource Border}"/>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10">
+                        <StackPanel Margin="0">
+                            <TextBlock Style="{DynamicResource TextList}" Text="ID: "/>
+                            <TextBlock Style="{DynamicResource TextList}" Text="Name: "/>
+                            <TextBlock Style="{DynamicResource TextList}" Text="LastName: "/>
+                            <TextBlock Style="{DynamicResource TextList}" Text="Patronymic: "/>
+                            <TextBlock Style="{DynamicResource TextList}" Text="Spec: "/>
+                        </StackPanel>
+                        <StackPanel Margin="0">
+                            <TextBlock x:Name="DocIdWr" Style="{DynamicResource TextList}" Text="{Binding Path=Doctor.Id, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock x:Name="DocNameWr"  Style="{DynamicResource TextList}" Text="{Binding Path=Doctor.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock x:Name="DocLastNameWr" Style="{DynamicResource TextList}" Text="{Binding Path=Doctor.LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock x:Name="DocPatronymicWr" Style="{DynamicResource TextList}" Text="{Binding Path=Doctor.Patronymic, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <TextBlock x:Name="DocSpecWr" Style="{DynamicResource TextList}" Text="{Binding Path=Doctor.Specialization, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+                <Grid x:Name="DeletePat" Margin="20">
+
+                    <Button Click="DeletePatient_OnClick" Style="{DynamicResource RoundCorner}">Delete Patient</Button>
+                </Grid>
+            </StackPanel>
+
+
+        </Grid>
+        <Grid Grid.Row="2" Margin="50">
+            <Border Style="{DynamicResource Border}"/>
+            <Grid Margin="0">
+                <ListView SelectedItem="{Binding SecItem, Mode=TwoWay}"
+                    Name="Patients" Background="Transparent" HorizontalContentAlignment="Stretch" ItemsSource="{Binding Path=Patients}" BorderThickness="0">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Style="{DynamicResource ListTemplate}">
+                                <Border Style="{DynamicResource  ListItem}"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Style="{DynamicResource TextList}" FontFamily="Segoe UI" Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Style="{DynamicResource TextList}" FontFamily="Segoe UI" Text="{Binding LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Style="{DynamicResource TextList}" FontFamily="Segoe UI" Text="{Binding Patronymic, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                        <TextBlock Style="{DynamicResource TextList}" Text="{Binding BirthdayDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                        <TextBlock Style="{DynamicResource TextList}" Text="{Binding Id, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                        <TextBlock Style="{DynamicResource TextList}" Text="{Binding SNILS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                        <TextBlock x:Name="Device" Style="{DynamicResource TextList}" Text="{Binding DeviceID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

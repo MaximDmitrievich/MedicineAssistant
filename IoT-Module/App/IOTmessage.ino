@@ -1,18 +1,22 @@
 #include <ArduinoJson.h>
 
-void readMessage(int messageId, char *payload, float temperature, float hr, float *cardio, int inc) {
+void readMessage(int messageId, char *payload, float *temperature, float *hr, float *cardio, unsigned long *ticks, int inc) {
     StaticJsonBuffer<MESSAGE_MAX_LEN> jsonBuffer;
     JsonObject &root = jsonBuffer.createObject();
     
-    root["deviceId"] = DEVICE_ID;
-    root["messageId"] = messageId;
-    root["temperature"] = temperature;
-    root["hr"] = hr;
+    root["DeviceId"] = DEVICE_ID;
+    root["MessageId"] = messageId;
     
-    JsonArray &cardiojson = root.createNestedArray("cardio");
+    JsonArray &cardiojson = root.createNestedArray("Cardio");
+    JsonArray &tempjson = root.createNestedArray("Temperature");
+    JsonArray &hrjson = root.createNestedArray("HR");
+    JsonArray &ticksjson = root.createNestedArray("Ticks");
     
     for (int i = 0; i < inc; i++) {
         cardiojson.add(cardio[i]);
+        tempjson.add(temperature[i]);
+        hrjson.add(hr[i]);
+        ticksjson.add(ticks[i]);
     }
     
     root.printTo(payload, MESSAGE_MAX_LEN);

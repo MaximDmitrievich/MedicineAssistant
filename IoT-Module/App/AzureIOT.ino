@@ -1,26 +1,34 @@
 #include <EEPROM.h>
 
 void readCredentials() { //connection string
-  int ssidAddr = 0;
-  int passAddr = ssidAddr + SSID_LEN;
-  int connectionStringAddr = passAddr + SSID_LEN;
-
-  ssidString = (char *)malloc(SSID_LEN);
-  passString = (char *)malloc(PASS_LEN);
-  connectionString = (char *)malloc(CONNECTION_STRING_LEN);
-
-  int ssidLength = EEPROMread(ssidAddr, ssidString);
-  int passLength = EEPROMread(passAddr, passString);
-  int connectionStringLength = EEPROMread(connectionStringAddr, connectionString);
-
-  strcpy(ssidString, SSID_STRING);
-  EEPROMWrite(ssidAddr, ssidString, strlen(ssidString));
-
-  strcpy(passString, PASS_STRING);
-  EEPROMWrite(passAddr, passString, strlen(passString));
+    int ssidAddr = 0;
+    int passAddr = ssidAddr + SSID_LEN;
+    int connectionStringAddr = passAddr + SSID_LEN;
   
-  strcpy(connectionString, DEVICE_CONNECTION_STRING);
-  EEPROMWrite(connectionStringAddr, connectionString, strlen(connectionString));
+    ssidString = (char *)malloc(SSID_LEN);
+    passString = (char *)malloc(PASS_LEN);
+    connectionString = (char *)malloc(CONNECTION_STRING_LEN);
+  
+    int ssidLength = EEPROMread(ssidAddr, ssidString);
+    int passLength = EEPROMread(passAddr, passString);
+    int connectionStringLength = EEPROMread(connectionStringAddr, connectionString);
+  
+    //strcpy(ssidString, SSID_STRING);
+    //strcpy(ssidString, MAIL_SSID);
+    strcpy(ssidString, D_SSID);
+    //strcpy(ssidString, M_SSID);
+    //strcpy(ssidString, MAI_SSID);
+    EEPROMWrite(ssidAddr, ssidString, strlen(ssidString));
+  
+    //strcpy(passString, PASS_STRING);
+    //strcpy(passString, MAIL_PASS);
+    strcpy(passString, D_PASSWORD);
+    //strcpy(passString, M_PASSWORD);
+    //strcpy(passString, MAI_PASSWORD);
+    EEPROMWrite(passAddr, passString, strlen(passString));
+    
+    strcpy(connectionString, DEVICE_CONNECTION_STRING);
+    EEPROMWrite(connectionStringAddr, connectionString, strlen(connectionString));
 }
 
 #define EEPROM_END 0

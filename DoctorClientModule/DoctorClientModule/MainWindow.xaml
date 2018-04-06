@@ -4,9 +4,15 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DoctorClientModule"
+        xmlns:d3="clr-namespace:InteractiveDataDisplay.WPF;assembly=InteractiveDataDisplay.WPF"
         mc:Ignorable="d"
-        Title="Medicine Assistant Doctor Client Module" Height="600" Width="850">
-    <Grid>
-        
+        Title="Medical Assistant Doctor's Client Module" 
+        Height="700" Width="1200" >
+
+    <Window.Resources>
+    </Window.Resources>
+    <Grid Style="{DynamicResource Background}">
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Content="{Binding Win}"></Frame>
     </Grid>
+    
 </Window>

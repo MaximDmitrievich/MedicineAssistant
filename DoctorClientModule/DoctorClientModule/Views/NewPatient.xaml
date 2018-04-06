@@ -1,0 +1,39 @@
+﻿<Page x:Class="DoctorClientModule.Views.NewPatient"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DoctorClientModule.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="700" d:DesignWidth="1200"
+      Title="NewPatient">
+
+    <Grid>
+        <Grid x:Name="AddPatient" Margin="250, 200, 250, 200">
+            <Border Style="{DynamicResource Border}"/>
+            <StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Margin="20" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <StackPanel Margin="3">
+                            <TextBlock Margin="1" Style="{DynamicResource Text}" Text="SNILS"/>
+                            <TextBlock Margin="1" Style="{DynamicResource Text}" Text="Name"/>
+                            <TextBlock Margin="1" Style="{DynamicResource Text}" Text="LastName"/>
+                            <TextBlock Margin="1" Style="{DynamicResource Text}" Text="Patronymic"/>
+                            <TextBlock Margin="1" Style="{DynamicResource Text}" Text="Birthdate"/>
+                            <TextBlock Margin="1" Style="{DynamicResource Text}" Text="DeviceID"/>
+                        </StackPanel>
+                        <StackPanel Margin="3">
+                            <TextBox Margin="2" x:Name="PatSnils" Width="150" FontSize="17"/>
+                            <TextBox Margin="2" x:Name="PatName" Width="150" FontSize="17"/>
+                            <TextBox Margin="2" x:Name="PatLastName" Width="150" FontSize="17"/>
+                            <TextBox Margin="2" x:Name="PatPatronymic" Width="150" FontSize="17"/>
+                            <TextBox Margin="2" x:Name="PatBirthdate" Width="150" FontSize="17"/>
+                            <TextBox Margin="2" x:Name="PatDevice" Width="150" FontSize="17"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <Button Click="AddPatient_OnClick" Style="{DynamicResource RoundCorner}" Margin="200, 0, 200, 0">Add Patient</Button>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

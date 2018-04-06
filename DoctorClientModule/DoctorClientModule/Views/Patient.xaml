@@ -1,0 +1,228 @@
+﻿<Page x:Class="DoctorClientModule.Views.Patient"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DoctorClientModule.Views"
+      xmlns:wpf="clr-namespace:InteractiveDataDisplay.WPF;assembly=InteractiveDataDisplay.WPF"
+      xmlns:chart="clr-namespace:Syncfusion.UI.Xaml.Charts;assembly=Syncfusion.SfChart.WPF"
+      mc:Ignorable="d" 
+      d:DesignHeight="700" d:DesignWidth="1200"
+      Title="Patients"
+      >
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="7*"/>
+            <ColumnDefinition Width="2.5*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="9*"/>
+                <RowDefinition Height="11*"/>
+                <RowDefinition Height="7*"/>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="6*"/>
+            </Grid.RowDefinitions>
+            <Grid Row="0" x:Name="Photo" Margin="20">
+                <Ellipse Height="150" Width="150">
+                    <Ellipse.Fill>
+                        <ImageBrush x:Name="Image" ImageSource="{Binding Path=PhotoPath, Mode=TwoWay}"/>
+                    </Ellipse.Fill>
+                </Ellipse>
+            </Grid>
+
+            <Grid Row="1" x:Name="Info" Margin="10">
+                <Border Style="{DynamicResource Border}"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10">
+                    <StackPanel Margin="5">
+                        <TextBlock Style="{DynamicResource TextPAT}" Text="ID:"/>
+                        <TextBlock Style="{DynamicResource TextPAT}" Text="SNILS:"/>
+                        <TextBlock Style="{DynamicResource TextPAT}" Text="Name:"/>
+                        <TextBlock Style="{DynamicResource TextPAT}" Text="LastName:"/>
+                        <TextBlock Style="{DynamicResource TextPAT}" Text="Patronymic:"/>
+                        <TextBlock Style="{DynamicResource TextPAT}" Text="Birthday:"/>
+                        <TextBlock Style="{DynamicResource TextPAT}" Text="DeviceID:"/>
+                    </StackPanel>
+                    <StackPanel Margin="5">
+                        <TextBlock Style="{DynamicResource TextPAT}" Text="{Binding Path=Pacient.Id, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Style="{DynamicResource TextPAT}" Text="{Binding Path=Pacient.SNILS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Style="{DynamicResource TextPAT}" Text="{Binding Path=Pacient.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Style="{DynamicResource TextPAT}" Text="{Binding Path=Pacient.LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Style="{DynamicResource TextPAT}" Text="{Binding Path=Pacient.Patronymic, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Style="{DynamicResource TextPAT}" Text="{Binding Path=Pacient.BirthdayDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        <TextBlock Style="{DynamicResource TextPAT}" Text="{Binding Path=Pacient.DeviceID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                </StackPanel>
+                
+            </Grid>
+
+            <Grid Row="2" x:Name="Recomends" Margin="20">
+                <Border Style="{DynamicResource Border}"/>
+                <ScrollViewer></ScrollViewer>
+            </Grid>
+            
+            <Grid Row="3" x:Name="DateTimes">
+                <Border Style="{DynamicResource Border}"/>
+                <ComboBox Margin="10" ItemsSource="{Binding Path=Ranges}" SelectedItem="{Binding Range, Mode=TwoWay}"/>
+            </Grid>
+
+            <Grid Row="4" x:Name="Back" Margin="20">
+                
+                <Button Command="{Binding Back}"  Style="{DynamicResource RoundCorner}"> Back</Button>
+            </Grid>
+        </Grid>
+        <Grid Grid.Column="2">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid Style="{DynamicResource TextBack}" HorizontalAlignment="Center">
+                    <Border Style="{DynamicResource Border}"/>
+                    <StackPanel>
+                        <TextBlock Style="{DynamicResource TextForKey}" Text="Emotion"/>
+                        <TextBlock Style="{DynamicResource TextForValue}" Text="Neutral" />
+                    </StackPanel>
+                </Grid>
+                <Grid Style="{DynamicResource TextBack}">
+                    <Border Style="{DynamicResource Border}"/>
+                    <StackPanel>
+                        <TextBlock Style="{DynamicResource TextForKey}" Text="Diseases"/>
+                        <TextBlock Style="{DynamicResource TextForValue}" Text="ORV"/>
+                    </StackPanel>
+                </Grid>
+                <Grid Style="{DynamicResource TextBack}">
+                    <Border Style="{DynamicResource Border}"/>
+                    <StackPanel>
+                        <TextBlock Style="{DynamicResource TextForKey}" Text="HeartRate"/>
+                        <TextBlock Style="{DynamicResource TextForValue}" Text="{Binding Path=HR, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                </Grid>
+                <Grid Style="{DynamicResource TextBack}">
+                    <Border Style="{DynamicResource Border}"/>
+                    <StackPanel>
+                        <TextBlock Style="{DynamicResource TextForKey}" Text="AD"/>
+                        <TextBlock Style="{DynamicResource TextForValue}" Text="120/80"/>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+        </Grid>
+        <Grid Column="1">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="6*"/>
+                <RowDefinition Height="5*"/>
+            </Grid.RowDefinitions>
+
+            <Border Style="{StaticResource Border}"/>
+
+
+            <Grid Grid.Row="0" Margin="10">
+                <chart:SfChart x:Name="ECG" Background="White">
+                    <chart:SfChart.Behaviors>
+                        <chart:ChartTrackBallBehavior/>
+                        <chart:ChartZoomPanBehavior
+                            ZoomMode="XY"
+                            EnableZoomingToolBar="True" 
+                            ToolBarOrientation="Vertical"
+                            EnableSelectionZooming="True"/>
+                    </chart:SfChart.Behaviors>
+                    <chart:SfChart.PrimaryAxis>
+                        <chart:DateTimeAxis
+                            LabelFormat="ss"
+                            IntervalType="Seconds" Interval="1"
+                            EnableScrollBar="True"
+                            EdgeLabelsDrawingMode="Hide"
+                            ShowTrackBallInfo="True"
+                            RangePadding="None"
+                            EnableAutoIntervalOnZooming="False"
+                            LabelsIntersectAction="Hide"/>
+                    </chart:SfChart.PrimaryAxis>
+                    <chart:SfChart.SecondaryAxis>
+                        <chart:NumericalAxis Header="Cardio (Dots)"/>
+                    </chart:SfChart.SecondaryAxis>
+                    <chart:SfChart.Series>
+                        <chart:LineSeries 
+                        ItemsSource="{Binding Path=CardioPlotLst}"
+                        
+                        EnableAnimation="true"
+                        XBindingPath="EventTime"
+                        YBindingPath="Cardio"
+                        IsManipulationEnabled="True">
+                        </chart:LineSeries>
+                    </chart:SfChart.Series>
+                </chart:SfChart>
+            </Grid>
+
+            <Grid Grid.Row="1" Margin="10">
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Border Style="{StaticResource Border}" Grid.Column="0" Margin="2"/>
+                <Border Style="{StaticResource Border}" Grid.Column="1" Margin="2"/>
+                
+                
+                <Grid Grid.Column="0" Margin="10">
+                    <chart:SfChart x:Name="HeartRate" Background="White">
+                        <chart:SfChart.Behaviors>
+                            <chart:ChartTrackBallBehavior/>
+                            <chart:ChartZoomPanBehavior EnableMouseWheelZooming="True"/>
+                        </chart:SfChart.Behaviors>
+                        <chart:SfChart.PrimaryAxis>
+                            <chart:CategoryAxis Header="Date"
+                                                ShowTrackBallInfo="True"/>
+                        </chart:SfChart.PrimaryAxis>
+                        <chart:SfChart.SecondaryAxis>
+                            <chart:NumericalAxis Header="HeartRate (BPMs)"/>
+                        </chart:SfChart.SecondaryAxis>
+                        <chart:SfChart.Series>
+                            <chart:LineSeries
+                                ItemsSource="{Binding Path=HeartRatePlotLst}"
+                                EnableAnimation="False"
+                                XBindingPath="EventTime"
+                                YBindingPath="HeartRate"
+                                IsManipulationEnabled="True"
+                                AnimationDuration="00:00:10">
+                            </chart:LineSeries>
+                        </chart:SfChart.Series>
+                    </chart:SfChart>
+                    
+                </Grid>
+                
+                <Grid Grid.Column="1" Margin="10">
+
+                    <chart:SfChart x:Name="Temperature" Background="White">
+                        <chart:SfChart.Behaviors>
+                            <chart:ChartTrackBallBehavior/>
+                            <chart:ChartZoomPanBehavior EnableMouseWheelZooming="True"/>
+                        </chart:SfChart.Behaviors>
+                        <chart:SfChart.PrimaryAxis>
+                            <chart:CategoryAxis Header="Date"
+                                                ShowTrackBallInfo="True"/>
+                        </chart:SfChart.PrimaryAxis>
+                        <chart:SfChart.SecondaryAxis>
+                            <chart:NumericalAxis Header="Temperature (Celsium)"/>
+                        </chart:SfChart.SecondaryAxis>
+                        <chart:SfChart.Series>
+                            <chart:LineSeries
+                                ItemsSource="{Binding Path=TemperaturePlotLst}"
+                                EnableAnimation="False"
+                                XBindingPath="EventTime"
+                                YBindingPath="Temperature"
+                                IsManipulationEnabled="True"
+                                AnimationDuration="00:00:10"> 
+                            </chart:LineSeries>
+                        </chart:SfChart.Series>
+                    </chart:SfChart>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>
+
+
+
+
+
+
+
