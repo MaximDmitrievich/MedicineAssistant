@@ -59,6 +59,116 @@ namespace DoctorClientModule.Utilities
             return daterange;
         }
 
+        public static async Task<List<EmotionData>> GetEmotion(Pacient pat)
+        {
+            List<EmotionData> result = null;
+            try
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    using (HttpRequestMessage request = new HttpRequestMessage
+                    {
+                        RequestUri = new Uri(Consts.Emo + $@"/{pat.Id}"),
+                        Method = HttpMethod.Get
+                    })
+                    {
+                        request.Headers.Add("Accept", "application/json");
+
+                        using (HttpResponseMessage response = await client.SendAsync(request))
+                        {
+                            if (response.StatusCode == HttpStatusCode.OK)
+                            {
+                                string tmp = await response.Content.ReadAsStringAsync();
+                                var tmpobj = JsonConvert.DeserializeObject<List<EmotionData>>(tmp);
+                                if (!Equals(tmpobj, null))
+                                {
+                                    result = tmpobj;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An unhandled exception just occurred: {ex.Message}", "Get Emotion", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            return result;
+        }
+
+        public static async Task<string> GetDisease(Pacient pat)
+        {
+            string result = null;
+            try
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    using (HttpRequestMessage request = new HttpRequestMessage
+                    {
+                        RequestUri = new Uri(Consts.Dis + $@"/{pat.Id}"),
+                        Method = HttpMethod.Get
+                    })
+                    {
+                        request.Headers.Add("Accept", "application/json");
+
+                        using (HttpResponseMessage response = await client.SendAsync(request))
+                        {
+                            if (response.StatusCode == HttpStatusCode.OK)
+                            {
+                                string tmp = await response.Content.ReadAsStringAsync();
+                                var tmpobj = JsonConvert.DeserializeObject<string>(tmp);
+                                if (!Equals(tmpobj, null))
+                                {
+                                    result = tmpobj;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An unhandled exception just occurred: {ex.Message}", "Get Emotion", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            return result;
+        }
+
+        public static async Task<Tuple<DateTime, DateTime>> GetLastRange(Pacient pat)
+        {
+            Tuple<DateTime, DateTime> range = null;
+            try
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    using (HttpRequestMessage request = new HttpRequestMessage
+                    {
+                        RequestUri = new Uri(Consts.Chart + $@"/first/{pat.DeviceID}"),
+                        Method = HttpMethod.Get
+                    })
+                    {
+                        request.Headers.Add("Accept", "application/json");
+
+                        HttpResponseMessage response = await client.SendAsync(request);
+
+                        if (response.StatusCode == HttpStatusCode.OK)
+                        {
+                            string tmp = await response.Content.ReadAsStringAsync();
+                            var tmpobj = JsonConvert.DeserializeObject<Tuple<DateTime, DateTime>>(tmp);
+                            if (!Equals(tmpobj, null))
+                            {
+                                range = tmpobj;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An unhandled exception just occurred: {ex.Message}", "Last Range", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            return range;
+        }
+
         public static async Task<HumanData> LoadHumanData(Pacient pat, Tuple<DateTime, DateTime> daterange)
         {
             HumanData data = null;

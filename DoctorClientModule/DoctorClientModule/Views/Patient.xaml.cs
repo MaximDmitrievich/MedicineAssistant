@@ -31,6 +31,11 @@ namespace DoctorClientModule.Views
             DataContext = Pvm;
             Pvm.Start();
         }
+        //override o
+        ~Patient()
+        {
+            var t = 3;
+        }
         
     }
 }

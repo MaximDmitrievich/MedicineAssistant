@@ -7,7 +7,9 @@
         xmlns:d3="clr-namespace:InteractiveDataDisplay.WPF;assembly=InteractiveDataDisplay.WPF"
         mc:Ignorable="d"
         Title="Medical Assistant Doctor's Client Module" 
-        Height="700" Width="1200" >
+        Height="700" Width="1200"
+        Icon="Images/export-1.png"
+        >
 
     <Window.Resources>
     </Window.Resources>

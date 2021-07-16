@@ -16,13 +16,12 @@
         </Style>
         
         <Style x:Key="Background" TargetType="Grid">
-            <Setter Property="Background" Value="LightCyan"/>
+            <Setter Property="Background" Value="Azure"/>
         </Style>
         <Style x:Key="Border" TargetType="Border">
             <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="BorderBrush" Value="DodgerBlue"/>
-            <Setter Property="CornerRadius" Value="20"/>
-            <Setter Property="Background" Value="LightGreen"/>
+            <Setter Property="BorderBrush" Value="#65737e"/>
+            <Setter Property="CornerRadius" Value="0"/>
         </Style>
         <Style x:Key="ListTemplate" TargetType="Grid">
             <Setter Property="Margin" Value="5"/>
@@ -37,17 +36,17 @@
         <Style x:Key="Text" TargetType="TextBlock">
             <Setter Property="Foreground" Value="Black"/>
             <Setter Property="FontSize" Value="20"/>
-            <Setter Property="FontFamily" Value="Segoe UI Light"/>
+            <Setter Property="FontFamily" Value="Roboto"/>
             <Setter Property="FontWeight" Value="Bold"/>
         </Style>
         <Style x:Key="TextForKey" TargetType="TextBlock">
-            <Setter Property="FontFamily" Value="Segoe UI Light"/>
+            <Setter Property="FontFamily" Value="Roboto"/>
             <Setter Property="FontSize" Value="24"/>
             <Setter Property="Margin" Value="10"/>
             <Setter Property="FontWeight" Value="Bold"/>
         </Style>
         <Style x:Key="TextForValue" TargetType="TextBlock">
-            <Setter Property="FontFamily" Value="Segoe UI Light"/>
+            <Setter Property="FontFamily" Value="Roboto"/>
             <Setter Property="FontSize" Value="30"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="Margin" Value="10"/>
@@ -58,14 +57,14 @@
             <Setter Property="Margin" Value="5"/>
         </Style>
         <Style x:Key="TextList" TargetType="TextBlock">
-            <Setter Property="FontFamily" Value="Segoe UI Light"/>
+            <Setter Property="FontFamily" Value="Roboto"/>
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="MinWidth" Value="100"/>
             <Setter Property="Margin" Value="5, 0, 0, 0"/>
             <Setter Property="FontWeight" Value="Bold"/>
         </Style>
         <Style x:Key="TextPAT" TargetType="TextBlock">
-            <Setter Property="FontFamily" Value="Segoe UI Light"/>
+            <Setter Property="FontFamily" Value="Roboto"/>
             <Setter Property="FontSize" Value="13"/>
         </Style>
         <Style x:Key="RoundCorner" TargetType="{x:Type Button}">
@@ -76,7 +75,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Grid x:Name="grid">
-                            <Border x:Name="border" CornerRadius="8" BorderBrush="Black" BorderThickness="2">
+                            <Border x:Name="border" CornerRadius="0" BorderBrush="Black" BorderThickness="2">
                                 <Border.Background>
                                     <RadialGradientBrush GradientOrigin="0.496,1.052">
                                         <RadialGradientBrush.RelativeTransform>
@@ -86,8 +85,8 @@
                                                 <TranslateTransform X="0.02" Y="0.3"/>
                                             </TransformGroup>
                                         </RadialGradientBrush.RelativeTransform>
-                                        <GradientStop Offset="1" Color="LightGreen"/>
-                                        <GradientStop Offset="0.3" Color="LightGreen"/>
+                                        <GradientStop Offset="1" Color="#01bccc"/>
+                                        <GradientStop Offset="0.3" Color="#01bccc"/>
                                     </RadialGradientBrush>
                                 </Border.Background>
                                 <ContentPresenter HorizontalAlignment="Center"
@@ -109,14 +108,14 @@
                                                     <TranslateTransform X="0.02" Y="0.3"/>
                                                 </TransformGroup>
                                             </RadialGradientBrush.RelativeTransform>
-                                            <GradientStop Color="LightSeaGreen" Offset="1"/>
-                                            <GradientStop Color="LightSeaGreen" Offset="0.3"/>
+                                            <GradientStop Color="#20B2AA" Offset="1"/>
+                                            <GradientStop Color="#20B2AA" Offset="0.3"/>
                                         </RadialGradientBrush>
                                     </Setter.Value>
                                 </Setter>
                             </Trigger>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="BorderBrush" TargetName="border" Value="DodgerBlue"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="#65737e"/>
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="False">
                                 <Setter Property="Opacity" TargetName="grid" Value="0.25"/>

@@ -17,15 +17,15 @@
             <ColumnDefinition Width="7*"/>
             <ColumnDefinition Width="2.5*"/>
         </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid Grid.Column="0" Background="#01bccc">
             <Grid.RowDefinitions>
                 <RowDefinition Height="9*"/>
-                <RowDefinition Height="11*"/>
                 <RowDefinition Height="7*"/>
+                <RowDefinition Height="7*"/>
+                <RowDefinition Height="2*"/>
                 <RowDefinition Height="5*"/>
-                <RowDefinition Height="6*"/>
             </Grid.RowDefinitions>
-            <Grid Row="0" x:Name="Photo" Margin="20">
+            <Grid Row="0" x:Name="Photo" Margin="10">
                 <Ellipse Height="150" Width="150">
                     <Ellipse.Fill>
                         <ImageBrush x:Name="Image" ImageSource="{Binding Path=PhotoPath, Mode=TwoWay}"/>
@@ -33,11 +33,10 @@
                 </Ellipse>
             </Grid>
 
-            <Grid Row="1" x:Name="Info" Margin="10">
+            <Grid Row="1" x:Name="Info" Margin="10" Background="Azure">
                 <Border Style="{DynamicResource Border}"/>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10">
                     <StackPanel Margin="5">
-                        <TextBlock Style="{DynamicResource TextPAT}" Text="ID:"/>
                         <TextBlock Style="{DynamicResource TextPAT}" Text="SNILS:"/>
                         <TextBlock Style="{DynamicResource TextPAT}" Text="Name:"/>
                         <TextBlock Style="{DynamicResource TextPAT}" Text="LastName:"/>
@@ -46,7 +45,6 @@
                         <TextBlock Style="{DynamicResource TextPAT}" Text="DeviceID:"/>
                     </StackPanel>
                     <StackPanel Margin="5">
-                        <TextBlock Style="{DynamicResource TextPAT}" Text="{Binding Path=Pacient.Id, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         <TextBlock Style="{DynamicResource TextPAT}" Text="{Binding Path=Pacient.SNILS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         <TextBlock Style="{DynamicResource TextPAT}" Text="{Binding Path=Pacient.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         <TextBlock Style="{DynamicResource TextPAT}" Text="{Binding Path=Pacient.LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
@@ -58,13 +56,13 @@
                 
             </Grid>
 
-            <Grid Row="2" x:Name="Recomends" Margin="20">
+            <Grid Row="2" x:Name="Recomends" Margin="20" Background="Azure">
                 <Border Style="{DynamicResource Border}"/>
                 <ScrollViewer></ScrollViewer>
             </Grid>
-            
-            <Grid Row="3" x:Name="DateTimes">
-                <Border Style="{DynamicResource Border}"/>
+
+            <Grid Row="3" x:Name="DateTimes" VerticalAlignment="Center">
+                
                 <ComboBox Margin="10" ItemsSource="{Binding Path=Ranges}" SelectedItem="{Binding Range, Mode=TwoWay}"/>
             </Grid>
 
@@ -73,30 +71,30 @@
                 <Button Command="{Binding Back}"  Style="{DynamicResource RoundCorner}"> Back</Button>
             </Grid>
         </Grid>
-        <Grid Grid.Column="2">
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Grid Style="{DynamicResource TextBack}" HorizontalAlignment="Center">
+        <Grid Grid.Column="2" Background="#01bccc">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" >
+                <Grid Style="{DynamicResource TextBack}" HorizontalAlignment="Center" Background="Azure">
                     <Border Style="{DynamicResource Border}"/>
                     <StackPanel>
                         <TextBlock Style="{DynamicResource TextForKey}" Text="Emotion"/>
-                        <TextBlock Style="{DynamicResource TextForValue}" Text="Neutral" />
+                        <TextBlock Style="{DynamicResource TextForValue}" Text="{Binding Path=Emotion, Mode=TwoWay}" />
                     </StackPanel>
                 </Grid>
-                <Grid Style="{DynamicResource TextBack}">
+                <Grid Style="{DynamicResource TextBack}" Background="Azure">
                     <Border Style="{DynamicResource Border}"/>
                     <StackPanel>
-                        <TextBlock Style="{DynamicResource TextForKey}" Text="Diseases"/>
-                        <TextBlock Style="{DynamicResource TextForValue}" Text="ORV"/>
+                        <TextBlock Style="{DynamicResource TextForKey}" Text="Disease"/>
+                        <TextBlock Style="{DynamicResource TextForValue}" Text="{Binding Path=Disease, Mode=TwoWay}"/>
                     </StackPanel>
                 </Grid>
-                <Grid Style="{DynamicResource TextBack}">
+                <Grid Style="{DynamicResource TextBack}" Background="Azure">
                     <Border Style="{DynamicResource Border}"/>
                     <StackPanel>
                         <TextBlock Style="{DynamicResource TextForKey}" Text="HeartRate"/>
                         <TextBlock Style="{DynamicResource TextForValue}" Text="{Binding Path=HR, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
                 </Grid>
-                <Grid Style="{DynamicResource TextBack}">
+                <Grid Style="{DynamicResource TextBack}" Background="Azure">
                     <Border Style="{DynamicResource Border}"/>
                     <StackPanel>
                         <TextBlock Style="{DynamicResource TextForKey}" Text="AD"/>
@@ -128,7 +126,7 @@
                     <chart:SfChart.PrimaryAxis>
                         <chart:DateTimeAxis
                             LabelFormat="ss"
-                            IntervalType="Seconds" Interval="1"
+                            IntervalType="Minutes" Interval="1"
                             EnableScrollBar="True"
                             EdgeLabelsDrawingMode="Hide"
                             ShowTrackBallInfo="True"
@@ -140,14 +138,14 @@
                         <chart:NumericalAxis Header="Cardio (Dots)"/>
                     </chart:SfChart.SecondaryAxis>
                     <chart:SfChart.Series>
-                        <chart:LineSeries 
+                        <chart:FastLineSeries 
                         ItemsSource="{Binding Path=CardioPlotLst}"
-                        
-                        EnableAnimation="true"
+                        EnableAnimation="False"
                         XBindingPath="EventTime"
                         YBindingPath="Cardio"
-                        IsManipulationEnabled="True">
-                        </chart:LineSeries>
+                        IsManipulationEnabled="True"
+                            Palette="SandyBeach">
+                        </chart:FastLineSeries>
                     </chart:SfChart.Series>
                 </chart:SfChart>
             </Grid>
@@ -176,14 +174,15 @@
                             <chart:NumericalAxis Header="HeartRate (BPMs)"/>
                         </chart:SfChart.SecondaryAxis>
                         <chart:SfChart.Series>
-                            <chart:LineSeries
+                            <chart:FastLineSeries
                                 ItemsSource="{Binding Path=HeartRatePlotLst}"
                                 EnableAnimation="False"
                                 XBindingPath="EventTime"
                                 YBindingPath="HeartRate"
                                 IsManipulationEnabled="True"
-                                AnimationDuration="00:00:10">
-                            </chart:LineSeries>
+                                AnimationDuration="00:00:10"
+                                Palette="SandyBeach">
+                            </chart:FastLineSeries>
                         </chart:SfChart.Series>
                     </chart:SfChart>
                     
@@ -204,14 +203,15 @@
                             <chart:NumericalAxis Header="Temperature (Celsium)"/>
                         </chart:SfChart.SecondaryAxis>
                         <chart:SfChart.Series>
-                            <chart:LineSeries
+                            <chart:FastLineSeries
                                 ItemsSource="{Binding Path=TemperaturePlotLst}"
                                 EnableAnimation="False"
                                 XBindingPath="EventTime"
                                 YBindingPath="Temperature"
                                 IsManipulationEnabled="True"
-                                AnimationDuration="00:00:10"> 
-                            </chart:LineSeries>
+                                AnimationDuration="00:00:10"
+                                Palette="SandyBeach"> 
+                            </chart:FastLineSeries>
                         </chart:SfChart.Series>
                     </chart:SfChart>
                 </Grid>

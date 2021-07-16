@@ -18,6 +18,8 @@ void readCredentials() { //connection string
     strcpy(ssidString, D_SSID);
     //strcpy(ssidString, M_SSID);
     //strcpy(ssidString, MAI_SSID);
+    //strcpy(ssidString, DIGITAL_SSID);
+    //strcpy(ssidString, PICNIC_SSID);
     EEPROMWrite(ssidAddr, ssidString, strlen(ssidString));
   
     //strcpy(passString, PASS_STRING);
@@ -25,6 +27,8 @@ void readCredentials() { //connection string
     strcpy(passString, D_PASSWORD);
     //strcpy(passString, M_PASSWORD);
     //strcpy(passString, MAI_PASSWORD);
+    //strcpy(passString, DIGITAL_PASSWORD);
+    //strcpy(passString, PICNIC_PASSWORD);
     EEPROMWrite(passAddr, passString, strlen(passString));
     
     strcpy(connectionString, DEVICE_CONNECTION_STRING);

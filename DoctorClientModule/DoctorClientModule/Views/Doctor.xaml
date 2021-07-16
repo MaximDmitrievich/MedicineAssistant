@@ -13,44 +13,44 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="4*"/>
+            <RowDefinition Height="6*"/>
         </Grid.RowDefinitions>
-        
-        <Grid x:Name="DoctorName" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Ellipse Height="150" Width="180">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid x:Name="DoctorName" Grid.Row="0" Grid.Column="0"   Background="#01bccc">
+            <Border Style="{DynamicResource Border}"/>
+            <Ellipse Height="180" Width="180">
                 <Ellipse.Fill>
-                    <ImageBrush ImageSource="/Images/1.jpg"/>
+                    <ImageBrush ImageSource="/Images/ic_account_circle_white_48dp_2x.png"/>
                 </Ellipse.Fill>
             </Ellipse>
             
         </Grid>
-        <Grid x:Name="InterfaceDoctor" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <StackPanel Orientation="Horizontal" >
+        <Grid x:Name="DoctorAccount" Grid.Row="0"  Column="1" Margin="0" Background="#01bccc">
+            <Border Style="{StaticResource Border}"/>
+            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock x:Name="DocLastNameWr" Style="{DynamicResource TextList}" Text="{Binding Path=Doctor.LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock x:Name="DocNameWr" Style="{DynamicResource TextList}" Text="{Binding Path=Doctor.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock x:Name="DocPatronymicWr" Style="{DynamicResource TextList}" Text="{Binding Path=Doctor.Patronymic, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                </StackPanel>
+                <TextBlock x:Name="DocSpecWr" Style="{DynamicResource TextList}" Text="{Binding Path=Doctor.Specialization, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                
+            </StackPanel>
+        </Grid>
+        <Grid x:Name="InterfaceDoctor" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Border Style="{DynamicResource Border}"/>
+            <StackPanel Orientation="Vertical" >
                 <Grid x:Name="AddPat" Margin="20">
                     
                     <Button Click="AddPatient_OnClick" 
                             Style="{StaticResource RoundCorner}">Add Patient</Button>
                 </Grid>
-                <Grid x:Name="DoctorAccount" Margin="10">
-                    <Border Style="{StaticResource Border}"/>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10">
-                        <StackPanel Margin="0">
-                            <TextBlock Style="{DynamicResource TextList}" Text="ID: "/>
-                            <TextBlock Style="{DynamicResource TextList}" Text="Name: "/>
-                            <TextBlock Style="{DynamicResource TextList}" Text="LastName: "/>
-                            <TextBlock Style="{DynamicResource TextList}" Text="Patronymic: "/>
-                            <TextBlock Style="{DynamicResource TextList}" Text="Spec: "/>
-                        </StackPanel>
-                        <StackPanel Margin="0">
-                            <TextBlock x:Name="DocIdWr" Style="{DynamicResource TextList}" Text="{Binding Path=Doctor.Id, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                            <TextBlock x:Name="DocNameWr"  Style="{DynamicResource TextList}" Text="{Binding Path=Doctor.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                            <TextBlock x:Name="DocLastNameWr" Style="{DynamicResource TextList}" Text="{Binding Path=Doctor.LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                            <TextBlock x:Name="DocPatronymicWr" Style="{DynamicResource TextList}" Text="{Binding Path=Doctor.Patronymic, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                            <TextBlock x:Name="DocSpecWr" Style="{DynamicResource TextList}" Text="{Binding Path=Doctor.Specialization, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                        </StackPanel>
-                    </StackPanel>
-                </Grid>
+                
                 <Grid x:Name="DeletePat" Margin="20">
 
                     <Button Click="DeletePatient_OnClick" Style="{DynamicResource RoundCorner}">Delete Patient</Button>
@@ -59,7 +59,7 @@
 
 
         </Grid>
-        <Grid Grid.Row="2" Margin="50">
+        <Grid Grid.Row="1" Grid.Column="1" Margin="0">
             <Border Style="{DynamicResource Border}"/>
             <Grid Margin="0">
                 <ListView SelectedItem="{Binding SecItem, Mode=TwoWay}"
@@ -72,9 +72,8 @@
                                     <TextBlock Style="{DynamicResource TextList}" FontFamily="Segoe UI" Text="{Binding Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                                     <TextBlock Style="{DynamicResource TextList}" FontFamily="Segoe UI" Text="{Binding LastName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                                     <TextBlock Style="{DynamicResource TextList}" FontFamily="Segoe UI" Text="{Binding Patronymic, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                        <TextBlock Style="{DynamicResource TextList}" Text="{Binding BirthdayDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                        <TextBlock Style="{DynamicResource TextList}" Text="{Binding Id, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                        <TextBlock Style="{DynamicResource TextList}" Text="{Binding SNILS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Style="{DynamicResource TextList}" Text="{Binding BirthdayDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBlock Style="{DynamicResource TextList}" Text="{Binding SNILS, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                                         <TextBlock x:Name="Device" Style="{DynamicResource TextList}" Text="{Binding DeviceID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                                     </StackPanel>
                             </Grid>

@@ -15,7 +15,7 @@
     
     
     <Grid>
-        <Grid x:Name="SignUp" Grid.Row="0"  VerticalAlignment="Center" HorizontalAlignment="Center">
+        <Grid x:Name="SignUp" Grid.Row="0"  VerticalAlignment="Center" HorizontalAlignment="Center" Background="#01bccc">
             <Border Style="{DynamicResource Border}"/>
             <StackPanel Orientation="Vertical" Margin="20">
                 <StackPanel Margin="5" Orientation="Horizontal" HorizontalAlignment="Center">
@@ -40,7 +40,7 @@
             </StackPanel>
         </Grid>
 
-        <Grid x:Name="ToSignIn" Grid.Row="0" Style="{DynamicResource EntryFieldStyle}" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid x:Name="ToSignIn" Grid.Row="0" Style="{DynamicResource EntryFieldStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#01bccc">
             <Border Style="{DynamicResource Border}"/>
             <StackPanel Margin="5, 20, 0, 20">
                 <StackPanel Orientation="Horizontal">

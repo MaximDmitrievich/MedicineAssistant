@@ -9,7 +9,7 @@
       Title="NewPatient">
 
     <Grid>
-        <Grid x:Name="AddPatient" Margin="250, 200, 250, 200">
+        <Grid x:Name="AddPatient" Margin="250, 200, 250, 200" Background="#01bccc">
             <Border Style="{DynamicResource Border}"/>
             <StackPanel>
                 <StackPanel Orientation="Vertical">

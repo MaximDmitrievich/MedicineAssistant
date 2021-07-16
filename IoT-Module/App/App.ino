@@ -31,9 +31,9 @@
 
 
 //Defined strings
-#define DEVICE_ID "id1"
+#define DEVICE_ID "musorId"
 #define CONNECTION_STRING "HostName=MedicineAssistant.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=gwo/rkuLyQeHoT2C0OFrzRTHdP0V6ALR9+tU3Coz0K0="
-#define DEVICE_CONNECTION_STRING "HostName=MedicineAssistant.azure-devices.net;DeviceId=id1;SharedAccessKey=I/XkMuW2k8F0rc5R6uYUBWeedPcRjx2SauNaA2Qnj08="
+#define DEVICE_CONNECTION_STRING "HostName=piknik.azure-devices.net;DeviceId=musorId;SharedAccessKey=M1erEzru9JilNz0VgXse6DDqigPCLMKDSqszrS3tdFg="
 #define SSID_STRING "MGTS_GPON_5243"
 #define PASS_STRING "JRQGJKYN"
 
@@ -48,6 +48,12 @@
 
 #define MAI_SSID "mai_8"
 #define MAI_PASSWORD "knopkawww719691998"
+
+#define DIGITAL_SSID "ImagineCup_Media"
+#define DIGITAL_PASSWORD "IC2018_pr"
+
+#define PICNIC_SSID ""
+#define PICNIC_PASSWORD ""
 
 
 OneWire oneWire(TEMPERATURE_PIN);
@@ -136,7 +142,7 @@ void READ()
         Ticks_Array[increment] = timeClient.getEpochTime();
         increment++;
     }
-    Serial.printf("Cardio: %lf,\tHR: %lf,\tT: %lf\tTicks: %lu\n", cardio, hr, temperature, timeClient.getEpochTime());
+    Serial.printf("Cardio: %lf,\tHR: %lf,\tT: %lf\n", cardio, hr, temperature);
 }
 
 

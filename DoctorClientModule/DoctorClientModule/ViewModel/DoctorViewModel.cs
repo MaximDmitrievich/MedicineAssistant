@@ -33,7 +33,8 @@ namespace DoctorClientModule.ViewModel
             set
             {
                 _secItem = value;
-                Messenger.Default.Send<Pacient>(SecItem, "Patient");
+                Messenger.Default.Send<Pacient>(_secItem, "Patient");
+                _secItem = null;
                 _navigationService.NavigateTo("Patient");
             }
         }

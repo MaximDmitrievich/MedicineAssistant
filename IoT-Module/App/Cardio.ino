@@ -5,6 +5,7 @@ float getCardio() {
       inByte = 1.0 * analogRead(CARDIO_INPUT_PIN);
     }
     inByte = map(inByte, 0, 1023, 0, 150);
+    height_new = 150 - inByte;
     return inByte;
 }
 

@@ -30,6 +30,7 @@ namespace DoctorClientModule
             ToSignIn.Visibility = Visibility.Visible;
             SignUp.Visibility = Visibility.Collapsed;
             DataContext = Svm;
+            
         }
 
         private void SignUp_OnClick(object sender, RoutedEventArgs e)
